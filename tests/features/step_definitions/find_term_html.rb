@@ -11,11 +11,11 @@ Given('I search a random word {word_type_html}') do |word_type|
 end
 
 And(/^the search should return at least one definition$/) do
-  expect(@search_result_random).not_to be_nil
+  expect(@search_result).not_to be_nil
 end
 
 Then(/^each definition is printed in correct format$/) do
-  expect(@search_result_random).to match(/^\d+\) (.+)/)
+  expect(@search_result).to match(/^\d+\) (.+)/)
 end
 
 Given('I search a {word_type_html} definitions for word {word}') do |word_type, word|

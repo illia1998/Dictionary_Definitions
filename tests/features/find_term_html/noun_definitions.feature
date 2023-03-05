@@ -12,4 +12,30 @@ Feature: As a user, I want to look up noun definitions of a word from dictionary
     6) used, especially after an adjective, to describe a man who has done something bad
     """
 
+  Scenario: Retrieving origin definitions of a word
+    Given I search a origin definitions for hamburger
+    Then the output should be:
+    """
+    1) late 19th cent. (originally US): from German Hamburg, a port in northern Germany.
+    """
+
+  Scenario: Retrieving idiom definitions of a word
+    Given I search a idiom definitions for sun
+    Then the output should be:
+    """
+    1) make hay while the sun shines
+    2) a place in the sun
+    3) under the sun
+    4) with the sun
+    """
+
+  Scenario Outline: Verifying word definition retrieval for case-variant input
+    Given I search a <word_type> definitions for <word>
+    Then the search should return at least one definition
+    And each definition is printed in correct format
+    Examples:
+      | word_type | word          |
+      | noun      | mother-in-law |
+      | idiom     | CaT           |
+      | origin    | MAGNET        |
 

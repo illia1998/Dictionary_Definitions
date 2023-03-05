@@ -10,7 +10,7 @@ class DictionaryDefinitions
 
   def definition_for(term = nil)
     !term && puts('Find definition for:'.colorize(:magenta))
-    @term = term || gets.to_s.chomp.downcase
+    @term = (term || gets).to_s.chomp.downcase
     query
   end
 
