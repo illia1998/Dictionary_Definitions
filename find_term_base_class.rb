@@ -2,38 +2,36 @@ require_relative 'support/require_support'
 
 # base clazz to look up definitions for any word
 class DictionaryDefinitions
-  attr_reader :opts
+  attr_reader :opts, :term
 
   def initialize(opts)
     @opts = opts
   end
 
   def definition_for(term = nil)
-    unless term
-      puts 'Find definition for:'.colorize(:magenta)
-      term = gets.to_s.chomp.downcase
-    end
-    query(term)
+    !term && puts('Find definition for:'.colorize(:magenta))
+    @term = term || gets.to_s.chomp.downcase
+    query
   end
 
   def random_definition
     puts 'Looking for a random word:'.colorize(:magenta)
-    rand_term = Spicy::Proton.noun
-    puts rand_term.colorize(:blue)
-    query(rand_term)
+    @term = Spicy::Proton.noun
+    puts @term.colorize(:blue)
+    query
   end
 
-  def print_output(*doc, term)
-    parameter_exist? ? search_with_param(*doc, term) : raise(InvalidParameterError, opts)
+  def print_output(*doc)
+    parameter_exist? ? search_with_param(*doc) : raise(InvalidParameterError, opts)
   end
 
   private
 
-  def query(term)
+  def query
     raise NotImplementedError, "You must implement 'query' method!"
   end
 
-  def connection(term)
+  def connection
     raise NotImplementedError, "You must implement 'connection' method!"
   end
 end

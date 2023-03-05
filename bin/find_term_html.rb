@@ -7,13 +7,13 @@ class DictionaryDefinitionsParse < DictionaryDefinitions
 
   private
 
-  def query(term)
-    response = connection(term)
+  def query
+    response = connection
     doc = Nokogiri::HTML(response.body)
-    print_output(doc, term)
+    print_output(doc)
   end
 
-  def connection(term)
+  def connection
     conn = Faraday.new(OXFORD_DICTIONARY_URL)
     endpoint = conn.get("#{term}_1", { q: term })
     endpoint = conn.get(term, { q: term }) unless endpoint.success?
@@ -26,7 +26,7 @@ class DictionaryDefinitionsParse < DictionaryDefinitions
     end
   end
 
-  def search_with_param(doc, term)
+  def search_with_param(doc)
     raise(NotFoundError, term) if parse_input(doc, OPTS[opts]).empty?
   end
 
@@ -35,5 +35,5 @@ class DictionaryDefinitionsParse < DictionaryDefinitions
   end
 end
 
-DictionaryDefinitionsParse.new(:idiom).definition_for
-DictionaryDefinitionsParse.new(:noun).random_definition
+# DictionaryDefinitionsParse.new(:idiom).definition_for
+# DictionaryDefinitionsParse.new(:noun).random_definition

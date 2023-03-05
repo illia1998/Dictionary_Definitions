@@ -8,19 +8,19 @@ class DictionaryDefinitionsAPI < DictionaryDefinitions
 
   private
 
-  def query(term)
-    response = connection(term)
+  def query
+    response = connection
     @parsed_response = JSON.parse(response.body)
-    print_output(term)
+    print_output
   end
 
-  def connection(term)
+  def connection
     conn = Faraday.new(DICTIONARY_API_URL)
     endpoint = conn.get(term)
     endpoint.success? ? endpoint : raise(NoExactMatchError, term)
   end
 
-  def search_with_param(term)
+  def search_with_param
     raise(NotFoundError, term) if method(opts).call.empty?
   end
 
@@ -29,5 +29,5 @@ class DictionaryDefinitionsAPI < DictionaryDefinitions
   end
 end
 
-# DictionaryDefinitionsAPI.new(:synonym).definition_for
-# DictionaryDefinitionsAPI.new(:audio).random_definition
+DictionaryDefinitionsAPI.new(:synonym).definition_for
+DictionaryDefinitionsAPI.new(:audio).random_definition
