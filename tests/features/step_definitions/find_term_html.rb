@@ -6,8 +6,8 @@ Then(/^the output should be:$/) do |text|
   expect(@search_result).to eq(text)
 end
 
-Given('I search a random word {word_type_html}') do |word_type|
-  @search_result_random = capture_search_random_output(word_type)
+Given('I search a random word {word_type_html} definitions') do |word_type|
+  @search_result = capture_search_random_output(word_type)
 end
 
 And(/^the search should return at least one definition$/) do

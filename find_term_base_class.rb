@@ -16,7 +16,7 @@ class DictionaryDefinitions
 
   def random_definition
     puts 'Looking for a random word:'.colorize(:magenta)
-    @term = Spicy::Proton.noun
+    @term = Faker::Noun.base
     puts @term.colorize(:blue)
     query
   end
