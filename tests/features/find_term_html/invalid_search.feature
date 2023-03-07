@@ -4,7 +4,9 @@ Feature: As a user, I want to receive appropriate error messages when search is 
     Given I search a non-existing <word_type> definitions for <word>
     Then I should see appropriate error message
     Examples:
-      | word     | word_type |
-      | stample  | sense     |
-      | ruby     | idiom     |
-      | wortunde | origin    |
+      | word      | word_type |
+      | stample   | sense     |
+      | ruby      | idiom     |
+      | worldwide | idiom     |
+      | wortunde  | origin    |
+      | exciting  | origin    |
