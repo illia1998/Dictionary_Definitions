@@ -7,6 +7,6 @@ Feature: As a user, I want to look up random word definitions from dictionary
 
     Examples:
       | Word_type |
-      | noun      |
+      | sense     |
       | origin    |
       | idiom     |

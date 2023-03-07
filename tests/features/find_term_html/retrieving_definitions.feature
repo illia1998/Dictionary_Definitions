@@ -1,7 +1,7 @@
 Feature: As a user, I want to look up definitions of a word from dictionary
 
   Scenario: Retrieving noun definitions of a word
-    Given I search a noun definitions for dog
+    Given I search a sense definitions for dog
     Then the output should be:
     """
     1) an animal with four legs and a tail, often kept as a pet or trained for work, for example hunting or guarding buildings. There are many types of dog, some of which are wild.
@@ -35,7 +35,7 @@ Feature: As a user, I want to look up definitions of a word from dictionary
     And each definition is printed in correct format
     Examples:
       | word_type | word          |
-      | noun      | mother-in-law |
+      | sense     | mother-in-law |
       | idiom     | CaT           |
       | origin    | MAGNET        |
 

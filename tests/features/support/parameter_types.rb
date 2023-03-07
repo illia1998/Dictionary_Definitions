@@ -1,6 +1,6 @@
 ParameterType(
   name: 'word_type_html',
-  regexp: /noun|origin|idiom|/,
+  regexp: /sense|origin|idiom|/,
   transformer: ->(word_type) { word_type.to_sym }
 )
 

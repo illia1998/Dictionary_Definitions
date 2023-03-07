@@ -1,5 +1,5 @@
 module HelperMethods
-  def format_output(output)
+  def sanitize_output(output)
     output.gsub(/\e\[([;\d]+)?m/, '').chomp
   end
 
@@ -15,13 +15,13 @@ module HelperMethods
     result = capture(:stdout) do
       search(word, word_type)
     end
-    format_output(result)
+    sanitize_output(result)
   end
 
   def capture_search_random_output(word_type)
     result = capture(:stdout) do
       search_random(word_type)
     end
-    format_output(result)
+    sanitize_output(result)
   end
 end

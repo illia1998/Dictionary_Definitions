@@ -23,5 +23,9 @@ Given('I search a {word_type_html} definitions for word {word}') do |word_type, 
 end
 
 Then('I should see appropriate error message') do
+  @logger.error(@error.message)
+end
 
+Given('I search a non-existing {word_type_html} definitions for {word}') do |word_type, word|
+  expect { search(word, word_type) }.to(raise_error { |e| @error = e })
 end
