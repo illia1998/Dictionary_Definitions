@@ -1,0 +1,4 @@
+desc 'Running find_term_html cucumber'
+task :run_html_tests do
+  sh 'cucumber features/find_term_html/'
+end
