@@ -5,8 +5,9 @@ gem 'colorize'
 gem 'faker'
 gem 'faraday'
 gem 'json'
-gem 'nokogiri'
 gem 'logger'
+gem 'nokogiri'
+gem 'rake'
 
 group :test do
   gem 'aruba'
