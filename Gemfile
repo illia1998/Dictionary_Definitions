@@ -6,6 +6,7 @@ gem 'faker'
 gem 'faraday'
 gem 'json'
 gem 'nokogiri'
+gem 'logger'
 
 group :test do
   gem 'aruba'

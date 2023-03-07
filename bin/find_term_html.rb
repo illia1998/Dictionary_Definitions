@@ -35,7 +35,7 @@ class DictionaryDefinitionsParse < DictionaryDefinitions
   end
 end
 
-# DictionaryDefinitionsParse.new(:noun).definition_for
+# DictionaryDefinitionsParse.new(:sense).definition_for
 # DictionaryDefinitionsParse.new(:idiom).random_definition
 
 

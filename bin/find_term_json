@@ -29,5 +29,5 @@ class DictionaryDefinitionsAPI < DictionaryDefinitions
   end
 end
 
-DictionaryDefinitionsAPI.new(:synonym).definition_for
-DictionaryDefinitionsAPI.new(:audio).random_definition
+# DictionaryDefinitionsAPI.new(:synonym).definition_for
+# DictionaryDefinitionsAPI.new(:audio).random_definition
