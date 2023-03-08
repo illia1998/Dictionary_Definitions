@@ -18,14 +18,10 @@ Then(/^each definition is printed in correct format$/) do
   expect(@search_result).to match(/^\d+\) (.+)/)
 end
 
-Given('I search a {word_type_html} definitions for word {word}') do |word_type, word|
-
-end
-
 Then('I should see appropriate error message') do
   @logger.error(@error.message)
 end
 
 Given('I search a non-existing {word_type_html} definitions for {word}') do |word_type, word|
-  expect { search(word, word_type) }.to(raise_error { |e| @error = e })
+  expect_search_to_raise_error(word, word_type)
 end

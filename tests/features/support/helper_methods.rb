@@ -24,4 +24,8 @@ module HelperMethods
     end
     sanitize_output(result)
   end
+
+  def expect_search_to_raise_error(word, word_type)
+    expect { search(word, word_type) }.to(raise_error { |e| @error = e })
+  end
 end
