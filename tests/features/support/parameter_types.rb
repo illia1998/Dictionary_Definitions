@@ -10,4 +10,11 @@ ParameterType(
   transformer: ->(word_type) { word_type.to_sym }
 )
 
+ParameterType(
+  name: 'dictionary_type',
+  regexp: /parse|api/,
+  transformer: lambda do |str|
+    Object.const_get("DictionaryDefinitions#{str.capitalize}")
+  end
+)
 
