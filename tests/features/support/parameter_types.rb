@@ -5,7 +5,7 @@ def convert_array_to_regexp(array)
 end
 
 ParameterType(
-  name: 'word_type_html',
+  name: 'word_type',
   regexp: /#{convert_array_to_regexp(WORD_TYPE_PARAMS)}/,
   transformer: ->(word_type) { word_type.to_sym }
 )

@@ -1,4 +1,6 @@
 require_relative '../../../bin/find_term_html'
+require_relative '../../../bin/find_term_json'
+require_relative 'constants'
 require 'active_support/testing/stream'
 require_relative 'helper_methods'
 require 'allure-cucumber'

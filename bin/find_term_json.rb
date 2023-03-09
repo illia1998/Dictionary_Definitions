@@ -28,3 +28,5 @@ class DictionaryDefinitionsApi < DictionaryDefinitions
     respond_to?(opts)
   end
 end
+
+# DictionaryDefinitionsApi.new(:noun).definition_for
