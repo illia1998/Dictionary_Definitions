@@ -1,3 +1,4 @@
+@random
 Feature: As a user, I want to look up random word definitions from dictionary
 
   Scenario Outline: Retrieving random word definitions

@@ -1,3 +1,4 @@
+@predefined_output
 Feature: As a user, I want to look up definitions of a word from dictionary
 
   Scenario: Retrieving noun definitions of a word
