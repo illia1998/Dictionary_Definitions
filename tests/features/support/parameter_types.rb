@@ -1,12 +1,12 @@
-ParameterType(
-  name: 'word_type_html',
-  regexp: /sense|origin|idiom|/,
-  transformer: ->(word_type) { word_type.to_sym }
-)
+# frozen_string_literal: true
+
+def convert_array_to_regexp(array)
+  array.join('|')
+end
 
 ParameterType(
-  name: 'word_type_json',
-  regexp: /noun|synonym|audio/,
+  name: 'word_type_html',
+  regexp: /#{convert_array_to_regexp(WORD_TYPE_PARAMS)}/,
   transformer: ->(word_type) { word_type.to_sym }
 )
 
