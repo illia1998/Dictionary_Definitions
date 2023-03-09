@@ -28,5 +28,3 @@ Given('I search a non-existing {word_type} definitions for {word} via {dictionar
   @search_obj = dictionary_type.new(word_type)
   expect_search_to_raise_error(word)
 end
-
-Faker::Noun
