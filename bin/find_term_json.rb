@@ -2,7 +2,7 @@
 require_relative '../support/require_support'
 
 # this clazz helps to look up definitions for any word via JSON
-class DictionaryDefinitionsAPI < DictionaryDefinitions
+class DictionaryDefinitionsApi < DictionaryDefinitions
   DICTIONARY_API_URL = 'https://api.dictionaryapi.dev/api/v2/entries/en/'.freeze
   include SearchParameters
 
@@ -29,5 +29,4 @@ class DictionaryDefinitionsAPI < DictionaryDefinitions
   end
 end
 
-# DictionaryDefinitionsAPI.new(:synonym).definition_for
-# DictionaryDefinitionsAPI.new(:audio).random_definition
+# DictionaryDefinitionsApi.new(:noun).definition_for

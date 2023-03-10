@@ -1,7 +1,8 @@
+@predefined_output
 Feature: As a user, I want to look up definitions of a word from dictionary
 
   Scenario: Retrieving noun definitions of a word
-    Given I search a sense definitions for dog
+    Given I search a sense definitions for dog via parse
     Then the output should be:
     """
     1) an animal with four legs and a tail, often kept as a pet or trained for work, for example hunting or guarding buildings. There are many types of dog, some of which are wild.
@@ -13,14 +14,14 @@ Feature: As a user, I want to look up definitions of a word from dictionary
     """
 
   Scenario: Retrieving origin definitions of a word
-    Given I search a origin definitions for hamburger
+    Given I search a origin definitions for hamburger via parse
     Then the output should be:
     """
     1) late 19th cent. (originally US): from German Hamburg, a port in northern Germany.
     """
 
   Scenario: Retrieving idiom definitions of a word
-    Given I search a idiom definitions for sun
+    Given I search a idiom definitions for sun via parse
     Then the output should be:
     """
     1) make hay while the sun shines
@@ -30,7 +31,7 @@ Feature: As a user, I want to look up definitions of a word from dictionary
     """
 
   Scenario Outline: Verifying word definition retrieval for case-variant input
-    Given I search a <word_type> definitions for <word>
+    Given I search a <word_type> definitions for <word> via parse
     Then the search should return at least one definition
     And each definition is printed in correct format
     Examples:
