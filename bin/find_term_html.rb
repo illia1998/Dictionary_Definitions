@@ -1,16 +1,15 @@
 #!/usr/bin/env ruby
 require_relative '../support/require_support'
 
-# this clazz helps to look up definitions for any word via HTML
+# this clazz helps to look up definitions for words via HTML
 class DictionaryDefinitionsParse < DictionaryDefinitions
   OXFORD_DICTIONARY_URL = 'https://www.oxfordlearnersdictionaries.com/definition/english'.freeze
 
   private
 
-  def query
+  def fetch_data
     response = connection
-    doc = parse_html(response)
-    print_results(doc)
+    @doc = parse_html(response)
   end
 
   def connection
@@ -28,15 +27,15 @@ class DictionaryDefinitionsParse < DictionaryDefinitions
     OPTS.key?(opts)
   end
 
-  def search_with_param(doc)
-    definitions = extract_definitions(doc, OPTS[opts])
+  def search_definitions
+    definitions = extract_definitions(OPTS[opts])
     raise(NotFoundError, term) if definitions.empty?
 
     print_definitions(definitions)
   end
 
-  def extract_definitions(doc, xpath)
-    doc.xpath(xpath).map(&:text)
+  def extract_definitions(xpath)
+    @doc.xpath(xpath).map(&:text)
   end
 
   def print_definitions(definitions)
@@ -46,7 +45,7 @@ class DictionaryDefinitionsParse < DictionaryDefinitions
   end
 end
 
-DictionaryDefinitionsParse.new(:idiom).definition_for
-DictionaryDefinitionsParse.new(:idiom).random_definition
+# DictionaryDefinitionsParse.new(:sense).definition_for
+# DictionaryDefinitionsParse.new(:idiom).random_definition
 
 
