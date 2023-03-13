@@ -9,8 +9,8 @@ class DictionaryDefinitionsParse < DictionaryDefinitions
 
   def query
     response = connection
-    doc = Nokogiri::HTML(response.body)
-    print_output(doc)
+    doc = parse_html(response)
+    print_results(doc)
   end
 
   def connection
@@ -20,22 +20,33 @@ class DictionaryDefinitionsParse < DictionaryDefinitions
     endpoint.success? ? endpoint : raise(NoExactMatchError, term)
   end
 
-  def parse_input(input, xpath)
-    input.xpath(xpath).map(&:text).each.with_index(1) do |text, i|
-      puts "#{i}) #{text}"
-    end
-  end
-
-  def search_with_param(doc)
-    raise(NotFoundError, term) if parse_input(doc, OPTS[opts]).empty?
+  def parse_html(response)
+    Nokogiri::HTML(response.body)
   end
 
   def parameter_exist?
     OPTS.key?(opts)
   end
+
+  def search_with_param(doc)
+    definitions = extract_definitions(doc, OPTS[opts])
+    raise(NotFoundError, term) if definitions.empty?
+
+    print_definitions(definitions)
+  end
+
+  def extract_definitions(doc, xpath)
+    doc.xpath(xpath).map(&:text)
+  end
+
+  def print_definitions(definitions)
+    definitions.each.with_index(1) do |text, i|
+      puts "#{i}) #{text}"
+    end
+  end
 end
 
-# DictionaryDefinitionsParse.new(:sense).definition_for
-# DictionaryDefinitionsParse.new(:idiom).random_definition
+DictionaryDefinitionsParse.new(:idiom).definition_for
+DictionaryDefinitionsParse.new(:idiom).random_definition
 
 

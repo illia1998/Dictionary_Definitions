@@ -21,7 +21,7 @@ class DictionaryDefinitions
     query
   end
 
-  def print_output(*doc)
+  def print_results(*doc)
     parameter_exist? ? search_with_param(*doc) : raise(InvalidParameterError, opts)
   end
 

@@ -11,7 +11,7 @@ class DictionaryDefinitionsApi < DictionaryDefinitions
   def query
     response = connection
     @parsed_response = JSON.parse(response.body)
-    print_output
+    print_results
   end
 
   def connection
