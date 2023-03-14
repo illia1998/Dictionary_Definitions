@@ -25,7 +25,8 @@ Then(/^each definition is printed in correct format$/) do
   expect(@search_result).to match(/^\d+\) (.+)/)
 end
 
-Then('I should see appropriate error message') do
+Then('I should see appropriate {error_type} error message') do |error_type|
+  expect(@error).to be_an_instance_of(error_type)
   @logger.error(@error.message)
 end
 

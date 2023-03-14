@@ -4,11 +4,11 @@ module HelperMethods
   end
 
   def search(word)
-    @search_obj.definition_for(word)
+    @query.definition_for(word)
   end
 
   def search_random
-    @search_obj.random_definition
+    @query.random_definition
   end
 
   def capture_search_output(word)
