@@ -22,11 +22,9 @@ class DictionaryDefinitions
   end
 
   def generate_results
-    fetch_data && search_definitions if search_parameter_valid?
-  end
+    raise(InvalidParameterError, opts) unless parameter_exist?
 
-  def search_parameter_valid?
-    parameter_exist? || raise(InvalidParameterError, opts)
+    fetch_data && search_definitions
   end
 
   private
