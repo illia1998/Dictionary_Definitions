@@ -11,25 +11,22 @@ class DictionaryDefinitions
   def definition_for(term = nil)
     !term && puts('Find definition for:'.colorize(:magenta))
     @term = (term || gets).to_s.chomp.downcase
-    print_results
+    generate_results
   end
 
   def random_definition
     puts 'Looking for a random word:'.colorize(:magenta)
     @term = Faker::Noun.base
     puts @term.colorize(:blue)
-    print_results
+    generate_results
   end
 
-  # TODO: improve SPR
+  def generate_results
+    fetch_data && search_definitions if search_parameter_valid?
+  end
 
-  def print_results
-    if parameter_exist?
-      fetch_data
-      search_definitions
-    else
-      raise(InvalidParameterError, opts)
-    end
+  def search_parameter_valid?
+    parameter_exist? || raise(InvalidParameterError, opts)
   end
 
   private
