@@ -20,6 +20,6 @@ ParameterType(
 
 ParameterType(
   name: 'error_type',
-  regexp: /\w+/,
+  regexp: /.*Error/,
   transformer: ->(s) { Object.const_get(s) }
 )
