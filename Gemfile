@@ -8,6 +8,7 @@ gem 'faraday'
 gem 'json'
 gem 'logger'
 gem 'nokogiri'
+gem 'rake'
 
 group :test do
   gem 'aruba'
