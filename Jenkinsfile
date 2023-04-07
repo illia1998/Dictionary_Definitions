@@ -20,9 +20,9 @@ pipeline {
             }
         }
         
-        stage('Rubys Version') {
+        stage('Find definition') {
             steps {
-                sh 'ruby --version'
+                sh 'ruby bin/find_term_html.rb'
             }
         }
     }
