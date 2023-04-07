@@ -13,37 +13,37 @@ pipeline {
     
     options{
         parameters{
-            [$class: 'BooleanParameterDefinition',
+            {$class: 'BooleanParameterDefinition',
               defaultValue: false,
               description: 'Send email notification?',
               name: 'sendEmail'
-            ],
-            [$class: 'TextParameterDefinition',
+            },
+            {$class: 'TextParameterDefinition',
               defaultValue: '',
               description: 'Email address to notify',
               name: 'email',
               visible: false,
-              script: [
+                script: {
                 $class: 'GroovyScript',
                 fallbackScript: '',
                 script: '''
                   if (binding.variables.get('sendEmail') == 'true') {
-                    return [
+                    return {
                       $class: 'TextParameterValue',
                       name: 'email',
                       value: ''
-                    ]
+                    }
                   } else {
-                    return [
+                    return {
                       $class: 'TextParameterValue',
                       name: 'email',
                       value: '',
                       visible: false
-                    ]
+                    }
                   }
                 '''
-              ]
-            ]
+                }
+            }
         }
     }
 
