@@ -10,6 +10,42 @@ pipeline {
         booleanParam(defaultValue: false, description: 'Send email notification?', name: 'SEND_EMAIL')
         string(defaultValue: '', description: 'Email address to notify', name: 'EMAIL')
     }
+    
+    properties([
+        parameters([
+            [$class: 'BooleanParameterDefinition',
+              defaultValue: false,
+              description: 'Send email notification?',
+              name: 'sendEmail'
+            ],
+            [$class: 'TextParameterDefinition',
+              defaultValue: '',
+              description: 'Email address to notify',
+              name: 'email',
+              visible: false,
+              script: [
+                $class: 'GroovyScript',
+                fallbackScript: '',
+                script: '''
+                  if (binding.variables.get('sendEmail') == 'true') {
+                    return [
+                      $class: 'TextParameterValue',
+                      name: 'email',
+                      value: ''
+                    ]
+                  } else {
+                    return [
+                      $class: 'TextParameterValue',
+                      name: 'email',
+                      value: '',
+                      visible: false
+                    ]
+                  }
+                '''
+              ]
+            ]
+        ])
+    ])
 
     stages {
         stage('Install Dependencies') {
