@@ -11,7 +11,7 @@ pipeline {
         string(defaultValue: '', description: 'Email address to notify', name: 'EMAIL')
     }
     
-    options{[
+    options{
         parameters([
             [$class: 'BooleanParameterDefinition',
               defaultValue: false,
@@ -45,7 +45,7 @@ pipeline {
               ]
             ]
         ])
-    }]
+    }
 
     stages {
         stage('Install Dependencies') {
