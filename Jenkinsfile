@@ -7,6 +7,8 @@ pipeline {
     
     parameters {
         string(defaultValue: "features/", description: "Insert features to be run", name: "Features")
+        string(defaultValue: '', description: 'Email address to notify', name: 'Email')
+        booleanParam(defaultValue: true, description: 'Send email notification?', name: 'sendEmail')
     }
 
     stages {
@@ -29,11 +31,14 @@ pipeline {
     }
     post {
         always {
-            mail to: 'illiaferents@gmail.com',
-                 subject: "Pipeline '${env.JOB_NAME}' Build #${env.BUILD_ID} ${currentBuild.result}",
-                 body: "Your Jenkins pipeline '${env.JOB_NAME}' Build #${env.BUILD_ID} has completed with ${currentBuild.result} result."
-        }
-    }
+            script {
+                if (params.sendEmail) {
+                    mail to: params.Email,
+                         subject: "Pipeline '${env.JOB_NAME}' Build #${env.BUILD_ID} ${currentBuild.result}",
+                         body: "Your Jenkins pipeline '${env.JOB_NAME}' Build #${env.BUILD_ID} has completed with ${currentBuild.result} result."
+               }
+          }
+     }
 }
 
 
