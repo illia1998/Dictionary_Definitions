@@ -13,11 +13,11 @@ pipeline {
     
     options{
         parameters{
-            {$class: 'BooleanParameterDefinition',
+            [$class: 'BooleanParameterDefinition',
               defaultValue: false,
               description: 'Send email notification?',
               name: 'sendEmail'
-            },
+            ],
             {$class: 'TextParameterDefinition',
               defaultValue: '',
               description: 'Email address to notify',
