@@ -45,7 +45,7 @@ class DictionaryDefinitionsParse < DictionaryDefinitions
   end
 end
 
-DictionaryDefinitionsParse.new(:sense).definition_for('dog')
+# DictionaryDefinitionsParse.new(:sense).definition_for('dog')
 # DictionaryDefinitionsParse.new(:idiom).random_definition
 
 
