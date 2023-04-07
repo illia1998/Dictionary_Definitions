@@ -1,16 +1,15 @@
 #!/usr/bin/env ruby
 require_relative '../support/require_support'
 
-# this clazz helps to look up definitions for any word via HTML
+# this clazz helps to look up definitions for words via HTML
 class DictionaryDefinitionsParse < DictionaryDefinitions
   OXFORD_DICTIONARY_URL = 'https://www.oxfordlearnersdictionaries.com/definition/english'.freeze
 
   private
 
-  def query
+  def fetch_data
     response = connection
-    doc = Nokogiri::HTML(response.body)
-    print_output(doc)
+    @doc = parse_html(response)
   end
 
   def connection
@@ -20,18 +19,29 @@ class DictionaryDefinitionsParse < DictionaryDefinitions
     endpoint.success? ? endpoint : raise(NoExactMatchError, term)
   end
 
-  def parse_input(input, xpath)
-    input.xpath(xpath).map(&:text).each.with_index(1) do |text, i|
-      puts "#{i}) #{text}"
-    end
-  end
-
-  def search_with_param(doc)
-    raise(NotFoundError, term) if parse_input(doc, OPTS[opts]).empty?
+  def parse_html(response)
+    Nokogiri::HTML(response.body)
   end
 
   def parameter_exist?
     OPTS.key?(opts)
+  end
+
+  def search_definitions
+    definitions = extract_definitions(OPTS[opts])
+    raise(NotFoundError, term) if definitions.empty?
+
+    print_definitions(definitions)
+  end
+
+  def extract_definitions(xpath)
+    @doc.xpath(xpath).map(&:text)
+  end
+
+  def print_definitions(definitions)
+    definitions.each.with_index(1) do |text, i|
+      puts "#{i}) #{text}"
+    end
   end
 end
 
