@@ -30,8 +30,8 @@ pipeline {
     post {
         always {
             mail to: 'illiaferents@gmail.com',
-                 subject: "Pipeline Completed: ${currentBuild.result}",
-                 body: "Your Jenkins pipeline has completed with ${currentBuild.result} result."
+                 subject: "Pipeline '${env.JOB_NAME}' Build #${env.BUILD_ID} ${currentBuild.result}",
+                 body: "Your Jenkins pipeline '${env.JOB_NAME}' Build #${env.BUILD_ID} has completed with ${currentBuild.result} result."
         }
     }
 }
