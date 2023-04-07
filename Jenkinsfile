@@ -22,7 +22,10 @@ pipeline {
         
         stage('Find definition') {
             steps {
-                sh 'ruby script.rb'
+                sh """
+                cd tests
+                cucumber features/find_term_html/retrieving_definitions.feature
+                """
             }
         }
     }
