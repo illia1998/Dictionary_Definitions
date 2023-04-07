@@ -6,9 +6,9 @@ pipeline {
     }
     
     parameters {
-        string(defaultValue: "features/", description: "Insert features to be run", name: "Features")
-        booleanParam(defaultValue: false, description: 'Send email notification?', name: 'sendEmail')
-        string(defaultValue: '', description: 'Email address to notify', name: 'Email')
+        string(defaultValue: "features/", description: "Insert features to be run", name: "FEATURES")
+        booleanParam(defaultValue: false, description: 'Send email notification?', name: 'SEND_EMAIL')
+        string(defaultValue: '', description: 'Email address to notify', name: 'EMAIL')
     }
 
     stages {
@@ -24,7 +24,7 @@ pipeline {
             steps {
                 sh """
                 cd tests
-                cucumber ${params.Features}
+                cucumber ${params.FEATURES}
                 """
             }
         }
@@ -32,8 +32,8 @@ pipeline {
     post {
         always {
             script {
-                if (params.sendEmail) {
-                    mail to: params.Email,
+                if (params.SEND_EMAIL) {
+                    mail to: params.EMAIL,
                          subject: "Pipeline '${env.JOB_NAME}' Build #${env.BUILD_ID} ${currentBuild.result}",
                          body: "Your Jenkins pipeline '${env.JOB_NAME}' Build #${env.BUILD_ID} has completed with ${currentBuild.result} result."
                  }
