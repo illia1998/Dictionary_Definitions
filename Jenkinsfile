@@ -45,7 +45,7 @@ pipeline {
               ]
             ]
         ])
-    })
+    }]
 
     stages {
         stage('Install Dependencies') {
