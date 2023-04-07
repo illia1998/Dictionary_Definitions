@@ -12,7 +12,7 @@ pipeline {
     }
     
     options{
-        parameters([
+        parameters{
             [$class: 'BooleanParameterDefinition',
               defaultValue: false,
               description: 'Send email notification?',
@@ -44,7 +44,7 @@ pipeline {
                 '''
               ]
             ]
-        ])
+        }
     }
 
     stages {
