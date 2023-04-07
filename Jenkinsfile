@@ -22,7 +22,7 @@ pipeline {
             steps {
                 sh """
                 cd tests
-                cucumber features/${params.Features}
+                cucumber ${params.Features}
                 """
             }
         }
