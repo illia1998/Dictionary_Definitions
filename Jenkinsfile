@@ -26,6 +26,7 @@ pipeline {
                 cd tests
                 cucumber features/find_term_html/retrieving_definitions.feature
                 cucumber features/find_term_html/invalid_search.feature
+                cucumber features/find_term_html/random_word_definitions.feature
                 """
             }
         }
