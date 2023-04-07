@@ -8,7 +8,7 @@ pipeline {
     parameters {
         string(defaultValue: "features/", description: "Insert features to be run", name: "FEATURES")
         booleanParam(defaultValue: false, description: 'Send email notification?', name: 'SEND_EMAIL')
-        string(defaultValue: '', description: 'Email address to notify', name: 'EMAIL',  when: { params.SEND_EMAIL })
+        string(defaultValue: '', description: 'Email address to notify', name: 'EMAIL')
     }
 
     stages {
