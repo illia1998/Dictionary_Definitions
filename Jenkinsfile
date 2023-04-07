@@ -27,6 +27,13 @@ pipeline {
             }
         }
     }
+    post {
+        always {
+            mail to: 'illiaferents@gmail.com',
+                 subject: "Pipeline Completed: ${currentBuild.result}",
+                 body: "Your Jenkins pipeline has completed with ${currentBuild.result} result."
+        }
+    }
 }
 
 
