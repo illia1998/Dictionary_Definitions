@@ -20,7 +20,7 @@ pipeline {
             }
         }
         
-        stage('Ruby Version') {
+        stage('Rubys Version') {
             steps {
                 sh 'ruby --version'
             }
