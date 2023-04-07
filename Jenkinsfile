@@ -4,14 +4,12 @@ pipeline {
     environment {
         PATH = "/usr/local/rvm/rubies/ruby-3.1.2/bin:${PATH}"
     }
+    
+    parameters {
+        string(defaultValue: "features/", description: "Features to be run", name: "Features")
+    }
 
     stages {
-        stage('Ruby Version') {
-            steps {
-                sh 'ruby --version'
-            }
-        }
-
         stage('Install Dependencies') {
             steps {
                 sh 'sudo rm /usr/bin/mkdir'
@@ -20,13 +18,11 @@ pipeline {
             }
         }
         
-        stage('Find definition') {
+        stage('Run Cucumber') {
             steps {
                 sh """
                 cd tests
-                cucumber features/find_term_html/retrieving_definitions.feature
-                cucumber features/find_term_html/invalid_search.feature
-                cucumber features/find_term_html/random_word_definitions.feature
+                cucumber features/${params.Features}
                 """
             }
         }
