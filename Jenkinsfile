@@ -19,6 +19,12 @@ pipeline {
                 sh 'sudo env PATH="$PATH" bundle install'
             }
         }
+        
+        stage('Ruby Version') {
+            steps {
+                sh 'ruby --version'
+            }
+        }
     }
 }
 
