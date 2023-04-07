@@ -36,9 +36,9 @@ pipeline {
                     mail to: params.Email,
                          subject: "Pipeline '${env.JOB_NAME}' Build #${env.BUILD_ID} ${currentBuild.result}",
                          body: "Your Jenkins pipeline '${env.JOB_NAME}' Build #${env.BUILD_ID} has completed with ${currentBuild.result} result."
-               }
-          }
-     }
+                 }
+            }
+        }
+    }
 }
-
 
