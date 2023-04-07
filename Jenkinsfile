@@ -22,7 +22,7 @@ pipeline {
         
         stage('Find definition') {
             steps {
-                sh 'ruby bin/find_term_html.rb'
+                sh 'bin/find_term_html.rb'
             }
         }
     }
