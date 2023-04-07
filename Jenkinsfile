@@ -11,7 +11,7 @@ pipeline {
         string(defaultValue: '', description: 'Email address to notify', name: 'EMAIL')
     }
     
-    properties([
+    options([
         parameters([
             [$class: 'BooleanParameterDefinition',
               defaultValue: false,
