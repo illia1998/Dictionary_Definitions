@@ -22,7 +22,8 @@ pipeline {
         
         stage('Find definition') {
             steps {
-                sh 'bin/find_term_html.rb'
+                sh 'cd tests'
+                sh 'cucumber features/find_term_html/retrieving_definitions.feature'
             }
         }
     }
