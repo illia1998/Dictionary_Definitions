@@ -18,3 +18,8 @@ ParameterType(
   end
 )
 
+ParameterType(
+  name: 'error_type',
+  regexp: /.*Error/,
+  transformer: ->(s) { Object.const_get(s) }
+)
