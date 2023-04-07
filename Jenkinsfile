@@ -6,7 +6,7 @@ pipeline {
     }
     
     parameters {
-        string(defaultValue: "features/", description: "Features to be run", name: "Features")
+        string(defaultValue: "features/", description: "Insert features to be run", name: "Features")
     }
 
     stages {
