@@ -48,8 +48,8 @@ pipeline {
                          subject: "Pipeline '${env.JOB_NAME}' Build #${env.BUILD_ID} ${currentBuild.result}",
                          body: "Your Jenkins pipeline '${env.JOB_NAME}' Build #${env.BUILD_ID} has completed with ${currentBuild.result} result."
                  }
-                archiveArtifacts artifacts: 'final-failures.txt'
             }
+            archiveArtifacts artifacts: 'final-failures.txt'
         }
     }
 }
