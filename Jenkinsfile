@@ -4,10 +4,9 @@ pipeline {
     environment {
         PATH = "/usr/local/rvm/rubies/ruby-3.1.2/bin:${PATH}"
     }
-    
+
     parameters {
         string(defaultValue: "features/", description: "Insert features to be run", name: "FEATURES")
-        booleanParam(defaultValue: false, description: 'Send email notification?', name: 'SEND_EMAIL')
         string(defaultValue: '', description: 'Email address to notify', name: 'EMAIL')
     }
 
@@ -19,7 +18,7 @@ pipeline {
                 sh 'sudo env PATH="$PATH" bundle install'
             }
         }
-        
+
         stage('Run Cucumber') {
             steps {
                 sh """
@@ -29,10 +28,11 @@ pipeline {
             }
         }
     }
+
     post {
         always {
             script {
-                if (params.SEND_EMAIL) {
+                if (params.EMAIL) {
                     mail to: params.EMAIL,
                          subject: "Pipeline '${env.JOB_NAME}' Build #${env.BUILD_ID} ${currentBuild.result}",
                          body: "Your Jenkins pipeline '${env.JOB_NAME}' Build #${env.BUILD_ID} has completed with ${currentBuild.result} result."
@@ -41,4 +41,3 @@ pipeline {
         }
     }
 }
-
