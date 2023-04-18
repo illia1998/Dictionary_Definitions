@@ -5,13 +5,12 @@ pipeline {
         PATH = "/usr/local/rvm/rubies/ruby-3.1.2/bin:${PATH}"
     }
 
-    stages {
-        stage('Ruby Version') {
-            steps {
-                sh 'ruby --version'
-            }
-        }
+    parameters {
+        string(defaultValue: "features/", description: "Insert features to be run", name: "FEATURES")
+        string(defaultValue: '', description: 'Email address to notify', name: 'EMAIL')
+    }
 
+    stages {
         stage('Install Dependencies') {
             steps {
                 sh 'sudo rm /usr/bin/mkdir'
@@ -19,14 +18,43 @@ pipeline {
                 sh 'sudo env PATH="$PATH" bundle install'
             }
         }
-        
-        stage('Find definition') {
+
+        stage('Run Cucumber') {
             steps {
-                sh 'cd tests'
-                sh 'cucumber features/find_term_html/retrieving_definitions.feature'
+                sh """
+                cd tests
+                cucumber -p jenkins ${params.FEATURES}
+                """
+            }
+        }
+        
+        stage('Rerun Failed Scenarios') {
+            when {
+                expression { currentBuild.result == 'FAILURE' }
+            }
+            steps {
+                sh """
+                cd tests
+                cucumber @rerun.txt --format rerun --out final-failures.txt
+                """
+            }
+            post {
+                always {
+                    archiveArtifacts artifacts: 'final-failures.txt'
+                }
+            }
+        } 
+    }
+
+    post {
+        always {
+            script {
+                if (params.EMAIL) {
+                    mail to: params.EMAIL,
+                         subject: "Pipeline '${env.JOB_NAME}' Build #${env.BUILD_ID} ${currentBuild.result}",
+                         body: "Your Jenkins pipeline '${env.JOB_NAME}' Build #${env.BUILD_ID} has completed with ${currentBuild.result} result."
+                 }
             }
         }
     }
 }
-
-
