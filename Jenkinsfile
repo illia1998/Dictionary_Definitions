@@ -23,10 +23,27 @@ pipeline {
             steps {
                 sh """
                 cd tests
-                cucumber ${params.FEATURES}
+                cucumber -p jenkins ${params.FEATURES}
                 """
             }
         }
+        
+        stage('Rerun Failed Scenarios') {
+            when {
+                expression { currentBuild.result == 'FAILURE' }
+            }
+            steps {
+                sh """
+                cd tests
+                cucumber @rerun.txt --format rerun --out final-failures.txt
+                """
+            }
+            post {
+                always {
+                    archiveArtifacts artifacts: 'final-failures.txt'
+                }
+            }
+        } 
     }
 
     post {
