@@ -21,7 +21,7 @@ pipeline {
 
         stage('Run Cucumber') {
             steps {
-                catchError(buildResult: 'SUCCESS', propagate: false) {
+                catchError(buildResult: 'SUCCESS', stageResult: 'FAILURE') {
                     sh """
                     cd tests
                     cucumber -p jenkins ${params.FEATURES}
