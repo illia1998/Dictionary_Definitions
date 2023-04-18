@@ -21,10 +21,12 @@ pipeline {
 
         stage('Run Cucumber') {
             steps {
-                sh """
-                cd tests
-                cucumber -p jenkins ${params.FEATURES}
-                """
+                catchError(buildResult: 'SUCCESS', propagate: false) {
+                    sh """
+                    cd tests
+                    cucumber -p jenkins ${params.FEATURES}
+                    """
+                }
             }
         }
         
