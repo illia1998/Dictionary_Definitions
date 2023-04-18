@@ -6,7 +6,7 @@ Feature: As a user, I want to look up definitions of a word from dictionary
     Then the output should be:
     """
     1) an animal with four legs and a tail, often kept as a pet or trained for work, for example hunting or guarding buildings. There are many types of dog, some of which are wild.
-    2) a male dog, fox, wolf or otter
+    2) a male dog, fox, wolf or otte
     3) greyhound racing
     4) a thing of low quality; a failure
     5) an offensive way of describing a woman who is not considered attractive
