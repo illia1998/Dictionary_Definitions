@@ -26,9 +26,6 @@ pipeline {
                 cucumber -p jenkins ${params.FEATURES}
                 """
             }
-            catch (error) {
-              echo "Cucumber failed, but continuing with pipeline..."
-            }
         }
         
         stage('Rerun Failed Scenarios') {
