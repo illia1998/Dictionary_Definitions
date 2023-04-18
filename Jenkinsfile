@@ -31,9 +31,6 @@ pipeline {
         }
         
         stage('Rerun Failed Scenarios') {
-            when {
-                expression { currentBuild.result == 'FAILURE' }
-            }
             steps {
                 sh """
                 cd tests
