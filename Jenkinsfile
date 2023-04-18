@@ -37,11 +37,6 @@ pipeline {
                 cucumber @rerun.txt --format rerun --out final-failures.txt
                 """
             }
-            post {
-                always {
-                    archiveArtifacts artifacts: 'final-failures.txt'
-                }
-            }
         } 
     }
 
@@ -53,6 +48,7 @@ pipeline {
                          subject: "Pipeline '${env.JOB_NAME}' Build #${env.BUILD_ID} ${currentBuild.result}",
                          body: "Your Jenkins pipeline '${env.JOB_NAME}' Build #${env.BUILD_ID} has completed with ${currentBuild.result} result."
                  }
+                archiveArtifacts artifacts: 'final-failures.txt'
             }
         }
     }
