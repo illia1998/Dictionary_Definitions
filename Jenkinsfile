@@ -32,12 +32,20 @@ pipeline {
         
         stage('Rerun Failed Scenarios') {
             steps {
-                sh """
-                cd tests
-                cucumber @rerun.txt --format rerun --out final-failures.txt
-                """
+                catchError(buildResult: 'SUCCESS', stageResult: 'FAILURE') {
+                    sh """
+                    cd tests
+                    cucumber @rerun.txt --format rerun --out final_failures.txt
+                    """
+                }
             }
-        } 
+        }
+        
+        stage('Save artifacts') {
+            steps {
+                archiveArtifacts artifacts: 'tests/final_failures.txt, tests/rerun.txt'
+            }
+        }
     }
 
     post {
@@ -49,7 +57,6 @@ pipeline {
                          body: "Your Jenkins pipeline '${env.JOB_NAME}' Build #${env.BUILD_ID} has completed with ${currentBuild.result} result."
                  }
             }
-            archiveArtifacts artifacts: 'final-failures.txt'
         }
     }
 }
