@@ -21,29 +21,31 @@ pipeline {
 
         stage('Run Cucumber') {
             steps {
-                sh """
-                cd tests
-                cucumber -p jenkins ${params.FEATURES}
-                """
+                catchError(buildResult: 'SUCCESS', stageResult: 'FAILURE') {
+                    sh """
+                    cd tests
+                    cucumber -p jenkins ${params.FEATURES}
+                    """
+                }
             }
         }
         
         stage('Rerun Failed Scenarios') {
-            when {
-                expression { currentBuild.result == 'FAILURE' }
-            }
             steps {
-                sh """
-                cd tests
-                cucumber @rerun.txt --format rerun --out final-failures.txt
-                """
-            }
-            post {
-                always {
-                    archiveArtifacts artifacts: 'final-failures.txt'
+                catchError(buildResult: 'SUCCESS', stageResult: 'FAILURE') {
+                    sh """
+                    cd tests
+                    cucumber @rerun.txt --format rerun --out final_failures.txt
+                    """
                 }
             }
-        } 
+        }
+        
+        stage('Save artifacts') {
+            steps {
+                archiveArtifacts artifacts: 'tests/final_failures.txt, tests/rerun.txt'
+            }
+        }
     }
 
     post {
