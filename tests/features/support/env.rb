@@ -10,9 +10,9 @@ AllureCucumber.configure do |config|
   config.clean_results_directory = true # set 'false' to see runs trend
 end
 
-at_exit do
-  system('allure generate report/allure-results --clean')
-end
+# at_exit do
+#   system('allure generate report/allure-results --clean')
+# end
 
 World(ActiveSupport::Testing::Stream, HelperMethods)
 
