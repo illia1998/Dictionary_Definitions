@@ -1,2 +1,2 @@
-default: --publish-quiet -f pretty --strict -f AllureCucumber::CucumberFormatter -o results/allure-results
+default: --publish-quiet -f pretty --strict
 jenkins: --publish-quiet --strict -f pretty -f rerun -o rerun.txt -f AllureCucumber::CucumberFormatter -o report/allure-results
