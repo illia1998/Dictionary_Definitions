@@ -7,4 +7,4 @@ def calculatePassRate() {
     def passRate = (failedScenarios.toFloat() / totalScenarios.toFloat()) * 100
 }
 
-
+calculatePassRate()
