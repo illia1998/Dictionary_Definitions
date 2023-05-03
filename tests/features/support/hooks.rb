@@ -6,3 +6,8 @@ Before do
     "[#{severity}] #{msg}\n"
   end
 end
+
+Before do
+  path = File.join(Dir.pwd, 'results')
+  Dir.mkdir(path) unless Dir.exist?(path)
+end
