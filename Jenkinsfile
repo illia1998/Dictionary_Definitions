@@ -29,7 +29,6 @@ pipeline {
                       sh """
                       echo '\033[1;32mRunning Cucumber...\033[36;1m'
                       cd tests
-                      mkdir -p results
                       cucumber -p jenkins ${params.FEATURES}
                       """
                 }
