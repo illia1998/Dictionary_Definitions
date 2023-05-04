@@ -25,27 +25,29 @@ pipeline {
 
         stage('Run Cucumber') {
             steps {
-                catchError(buildResult: 'SUCCESS', stageResult: 'FAILURE') {
+                dir('tests') {
+                    catchError(buildResult: 'SUCCESS', stageResult: 'FAILURE') {
                       sh """
                       echo '\033[1;32mRunning Cucumber...\033[36;1m'
-                      cd tests
                       cucumber -p jenkins ${params.FEATURES}
                       """
-                }
-                 echo '\033[1;32mFirst Cucumber Run Completed.\033[0m'
+                    }
+                echo '\033[1;32mFirst Cucumber Run Completed.\033[0m'
+                }       
             }
         }
         
          stage('Rerun Failed Scenarios') {
             steps {
-                catchError(buildResult: 'SUCCESS', stageResult: 'FAILURE') {
-                    sh """
-                    cd tests
-                    echo '\033[1;32mRe-Running Failing Features...\033[36;1m'
-                    cucumber @results/rerun.txt --publish-quiet -f pretty -f rerun -o results/final_failures.txt
-                    """
-                }
-                 echo '\033[1;32mRe-Run Completed.\033[0m'
+                dir('tests') {
+                    catchError(buildResult: 'SUCCESS', stageResult: 'FAILURE') {
+                      sh """
+                      echo '\033[1;32mRe-Running Failing Features...\033[36;1m'
+                      cucumber @results/rerun.txt --publish-quiet -f pretty -f rerun -o results/final_failures.txt
+                      """
+                    }
+                echo '\033[1;32mRe-Run Completed.\033[0m'
+                } 
             }
         }
         
