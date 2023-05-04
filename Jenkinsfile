@@ -77,7 +77,7 @@ pipeline {
                     def passRateInfo =  load ('./calculate_pass_rate.groovy')
                     mail to: params.EMAIL,
                          subject: "Pipeline '${env.JOB_NAME}' Build #${env.BUILD_ID} ${currentBuild.result}",
-                         body: "Your Jenkins pipeline '${env.JOB_NAME}' Build #${env.BUILD_ID} has completed as ${currentBuild.result}.\n\nTotal scenarios pass rate: ${passRateInfo.failedScenarios}/${passRateInfo.totalScenarios} (${passRateInfo.passRate}%) passed"
+                         body: "Your Jenkins pipeline '${env.JOB_NAME}' Build #${env.BUILD_ID} has completed as ${currentBuild.result}.\n\nTotal scenarios pass rate: ${passRateInfo.passedScenarios}/${passRateInfo.totalScenarios} (${passRateInfo.passRate}%) passed"
                  }
             }
         }
