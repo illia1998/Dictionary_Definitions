@@ -2,7 +2,6 @@
 
 require 'colorize'
 require 'faraday'
-require 'faker'
 require 'json'
 require 'spicy-proton'
 require 'nokogiri'
