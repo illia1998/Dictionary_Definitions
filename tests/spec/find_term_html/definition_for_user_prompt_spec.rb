@@ -37,8 +37,8 @@ end
 RSpec.describe DictionaryDefinitionsParse do
   context '#definition_for' do
     context 'when retrieving definitions for a word' do
-      include_examples 'invalid user prompt', ' ', 'raises InvalidURLError for invalid search', InvalidURLError
-      include_examples 'invalid user prompt', nil, 'raises NotFoundError for empty search', NotFoundError
+      include_examples 'invalid user prompt', ' ', 'raises InvalidURLError for empty search', InvalidURLError
+      include_examples 'invalid user prompt', nil, 'raises NotFoundError for nil', NotFoundError
     end
   end
 end
