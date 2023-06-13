@@ -34,14 +34,16 @@ RSpec.describe DictionaryDefinitionsParse do
 
     context 'when retrieving definitions for word with no results found' do
       include_examples 'invalid request', :sense, '', 'raises NotFoundError for empty search', NotFoundError
-      include_examples 'invalid request', :sense, nil, 'raises NotFoundError for empty search', NotFoundError
       include_examples 'invalid request', :idiom, 'old-fashioned', 'raises NotFoundError if none idioms found', NotFoundError
       include_examples 'invalid request', :origin, 'masterpiece', 'raises NotFoundError if word origin not found', NotFoundError
     end
 
     context 'when retrieving definitions with invalid input' do
-      include_examples 'invalid request', :sense, '>>{{', 'raises InvalidURLError for invalid search', InvalidURLError
-      include_examples 'invalid request', :sense, '""', 'raises InvalidURLError for invalid search', InvalidURLError
+      include_examples 'invalid request', :sense, '>>{{', 'raises InvalidURLError for excluded symbols', InvalidURLError
+      include_examples 'invalid request', :sense, '""', 'raises InvalidURLError for excluded symbols', InvalidURLError
+      include_examples 'invalid request', :sense, nil, 'raises InvalidURLError for nil', InvalidURLError
+      include_examples 'invalid request', :sense, ' ', 'raises InvalidURLError for empty space', InvalidURLError
+
     end
   end
 end
