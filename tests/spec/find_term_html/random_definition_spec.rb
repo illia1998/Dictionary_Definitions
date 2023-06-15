@@ -35,7 +35,16 @@ RSpec.describe DictionaryDefinitionsParse do
 end
 
 RSpec.describe DictionaryDefinitionsParse do
-  it 'fetches words from RandomWord module' do
+  subject { described_class.new(:origin) }
 
+  it 'fetches words from RandomWord module' do
+    allow_any_instance_of(described_class).to receive(:puts)
+    data = RandomWord::Noun.send(:data)
+    noun_list = data['en']['nouns']['base']
+
+    subject.random_definition
+    definition = subject.term
+
+    expect(noun_list).to include(definition)
   end
 end
