@@ -1,16 +1,3 @@
-require_relative '../../../bin/find_term_html'
-
-RSpec.shared_examples 'valid request' do |word_type, word, description|
-  subject { described_class.new(word_type) }
-
-  it description do
-    allow_any_instance_of(described_class).to receive(:puts)
-    result = subject.definition_for(word)
-    expect(result).to be_an(Array)
-    expect(result).not_to be_empty
-  end
-end
-
 RSpec.describe DictionaryDefinitionsParse do
   context '#definition_for' do
     context 'when looking up the sense of a word' do

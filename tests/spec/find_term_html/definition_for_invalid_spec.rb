@@ -1,14 +1,3 @@
-require_relative '../../../bin/find_term_html'
-
-RSpec.shared_examples 'invalid request' do |word_type, word, description, error|
-  subject { described_class.new(word_type) }
-
-  it description do
-    allow_any_instance_of(described_class).to receive(:puts)
-    expect { subject.definition_for(word) }.to raise_error(error)
-  end
-end
-
 RSpec.describe DictionaryDefinitionsParse do
   context '#definition_for' do
     context 'when retrieving definitions with invalid parameter' do
