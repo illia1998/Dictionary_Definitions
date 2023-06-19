@@ -98,4 +98,5 @@ RSpec.configure do |config|
 end
 
 require_relative '../../bin/find_term_html'
-require_relative '../spec/find_term_html/shared_examples_spec'
+require_relative '../../bin/find_term_json'
+require_relative '../spec/support/shared_examples'
