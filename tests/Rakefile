@@ -1,9 +1,20 @@
 desc 'Running find_term_html cucumber'
-task :run_html_tests do
+task :run_html_features do
   sh 'cucumber features/find_term_html/'
 end
 
 desc 'Running find_term_html cucumber'
-task :run_json_tests do
+task :run_json_features do
   sh 'cucumber features/find_term_json/'
 end
+
+desc 'Running find_term_html specs'
+task :run_html_specs do
+  sh 'rspec spec/find_term_html/'
+end
+
+desc 'Running find_term_json specs'
+task :run_json_specs do
+  sh 'rspec spec/find_term_json'
+end
+
