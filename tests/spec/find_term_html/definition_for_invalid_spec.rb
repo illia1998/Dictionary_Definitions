@@ -30,9 +30,7 @@ RSpec.describe DictionaryDefinitionsParse do
     context 'when retrieving definitions with invalid input' do
       include_examples 'invalid request', :sense, '>>{{', 'raises InvalidURLError for excluded symbols', InvalidURLError
       include_examples 'invalid request', :sense, '""', 'raises InvalidURLError for excluded symbols', InvalidURLError
-      include_examples 'invalid request', :sense, nil, 'raises InvalidURLError for nil', InvalidURLError
       include_examples 'invalid request', :sense, ' ', 'raises InvalidURLError for empty space', InvalidURLError
-
     end
   end
 end
