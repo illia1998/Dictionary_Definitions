@@ -14,7 +14,7 @@ module SharedExamples
     subject { described_class.new(word_type) }
 
     it description do
-      allow_any_instance_of(described_class).to receive(:puts)
+      allow(subject).to receive(:puts)
       expect { subject.definition_for(word) }.to raise_error(error)
     end
   end
@@ -49,7 +49,7 @@ module SharedExamples
     subject { described_class.new(word_type) }
 
     it description do
-      allow_any_instance_of(described_class).to receive(:puts)
+      allow(subject).to receive(:puts)
       result = subject.random_definition
       expect(result).to be_an(Array)
       expect(result).not_to be_empty
