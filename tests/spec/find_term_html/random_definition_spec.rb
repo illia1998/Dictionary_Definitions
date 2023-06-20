@@ -1,5 +1,5 @@
 RSpec.describe DictionaryDefinitionsParse do
-  context '#random_definition' do
+  context '#random_definition', :random do
     context 'when looking up the sense of a word' do
       include_examples 'valid request random', :sense, 'returns an array of definitions for lowercase word'
       include_examples 'valid request random', :sense, 'returns an array of definitions for uppercase word'
@@ -24,7 +24,7 @@ end
 RSpec.describe DictionaryDefinitionsParse do
   subject { described_class.new(:origin) }
 
-  context '#random_definition' do
+  context '#random_definition', :random do
     it 'fetches words from RandomWord module' do
       allow_any_instance_of(described_class).to receive(:puts)
       data = RandomWord::Noun.send(:data)
