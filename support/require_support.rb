@@ -3,7 +3,6 @@
 require 'colorize'
 require 'faraday'
 require 'json'
-require 'spicy-proton'
 require 'nokogiri'
 require_relative 'constants'
 require_relative '../find_term_base_class'
