@@ -1,7 +1,6 @@
 source 'https://rubygems.org/'
 
 gem 'activesupport'
-gem 'allure-cucumber'
 gem 'colorize'
 gem 'faraday'
 gem 'fuubar'
@@ -11,6 +10,9 @@ gem 'nokogiri'
 gem 'rake'
 
 group :test do
+  gem 'allure-cucumber'
   gem 'aruba'
   gem 'cucumber'
+  gem 'parallel_tests'
+  gem 'rspec-mocks'
 end
