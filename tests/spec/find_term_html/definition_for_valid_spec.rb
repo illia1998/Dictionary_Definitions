@@ -1,6 +1,6 @@
 RSpec.describe DictionaryDefinitionsParse do
   context '#definition_for' do
-    context 'when looking up the sense of a word', :valid_sense do
+    context 'when retrieving the sense for a valid request', :valid_sense do
       include_examples 'valid request', :sense, 'surface', 'returns an array of definitions for lowercase word'
       include_examples 'valid request', :sense, 'DAM', 'returns an array of definitions for uppercase word'
       include_examples 'valid request', :sense, 'CaMeL', 'returns an array of definitions for mixed-case word'
