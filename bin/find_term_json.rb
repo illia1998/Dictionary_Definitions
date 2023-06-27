@@ -28,8 +28,11 @@ class DictionaryDefinitionsApi < DictionaryDefinitions
   end
 
   def search_definitions
-    raise(NotFoundError, term) if method(opts).call.empty?
+    definitions = method(opts).call
+    raise(NotFoundError, term) if definitions.empty?
+
+    definitions
   end
 end
 
-# DictionaryDefinitionsApi.new(:noun).definition_for
+# DictionaryDefinitionsApi.new(:synonym).definition_for('light')
