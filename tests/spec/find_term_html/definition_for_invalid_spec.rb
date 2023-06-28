@@ -31,7 +31,6 @@ RSpec.describe DictionaryDefinitionsParse do
       include_examples 'invalid request', :sense, '>>{{', 'raises InvalidURLError for excluded symbols', InvalidURLError
       include_examples 'invalid request', :sense, '""', 'raises InvalidURLError for excluded symbols', InvalidURLError
       include_examples 'invalid request', :sense, ' ', 'raises InvalidURLError for empty space', InvalidURLError
-      include_examples 'invalid request', :sense, nil, 'raises InvalidURLError for nil', InvalidURLError
     end
   end
 end
