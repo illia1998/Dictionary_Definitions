@@ -1,6 +1,5 @@
 module SharedExamples
   RSpec.shared_examples 'valid request' do |word_type, word, description|
-
     it description do
       subject = described_class.new(word_type)
 
