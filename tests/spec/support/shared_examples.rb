@@ -20,9 +20,10 @@ module SharedExamples
     end
   end
 
-  RSpec.shared_examples 'valid user prompt' do |word, description, _error|
+  RSpec.shared_examples 'valid user prompt' do |word_type, description|
     it description do
-      subject = described_class.new(:sense)
+      subject = described_class.new(word_type)
+      word = RandomWord::Noun.base
 
       allow(subject).to receive(:puts)
       allow(subject).to receive(:gets).and_return(word)
@@ -33,14 +34,15 @@ module SharedExamples
     end
   end
 
-  RSpec.shared_examples 'invalid user prompt' do |word, description, error|
+  RSpec.shared_examples 'invalid user prompt' do |word_type, description|
     it description do
-      subject = described_class.new(:sense)
+      subject = described_class.new(word_type)
+      word = %w[# % ! < > { } "].sample
 
       allow(subject).to receive(:puts)
       allow(subject).to receive(:gets).and_return(word)
 
-      expect { subject.definition_for(word) }.to raise_error(error)
+      expect { subject.definition_for(word) }.to raise_error(EnglishDictionaryError)
     end
   end
 
