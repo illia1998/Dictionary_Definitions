@@ -1,22 +1,9 @@
 RSpec.describe DictionaryDefinitionsParse do
   context '#random_definition', :random do
-    context 'when looking up the sense of a word' do
-      include_examples 'valid request random', :sense, 'returns an array of definitions for lowercase word'
-      include_examples 'valid request random', :sense, 'returns an array of definitions for uppercase word'
-      include_examples 'valid request random', :sense, 'returns an array of definitions for mixed-case word'
-      include_examples 'valid request random', :sense, 'returns an array of definitions for hyphenated word'
-    end
-
-    context 'when retrieving the idiom for a valid request' do
-      include_examples 'valid request random', :idiom, 'returns an array of definitions for lowercase word'
-      include_examples 'valid request random', :idiom, 'returns an array of definitions for uppercase word'
-      include_examples 'valid request random', :idiom, 'returns an array of definitions for mixed-case word'
-    end
-
-    context 'when retrieving the origin of a valid request' do
-      include_examples 'valid request random', :origin, 'returns an array of definitions for lowercase word'
-      include_examples 'valid request random', :origin, 'returns an array of definitions for uppercase word'
-      include_examples 'valid request random', :origin, 'returns an array of definitions for mixed-case word'
+    context 'when looking up the random word' do
+      include_examples 'valid request random', :sense, 'returns an array of definitions for a word'
+      include_examples 'valid request random', :idiom, 'returns an array of idioms for a word'
+      include_examples 'valid request random', :origin, 'returns an array of origins for a word'
     end
   end
 end
