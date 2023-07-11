@@ -1,5 +1,5 @@
-require_relative '../../../bin/find_term_html'
-require_relative '../../../bin/find_term_json'
+require_relative '../../../bin/dictionary_definitions_parse'
+require_relative '../../../bin/dictionary_definitions_api'
 require_relative 'constants'
 require 'active_support/testing/stream'
 require_relative 'helper_methods'
