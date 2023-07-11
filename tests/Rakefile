@@ -36,12 +36,12 @@ namespace :spec do
   end
 
   desc 'Run specs in spec/dictionary_definitions_parse'
-  RSpec::Core::RakeTask.new(:html) do |task|
+  RSpec::Core::RakeTask.new(:parse) do |task|
     task.pattern = 'spec/dictionary_definitions_parse/**/*_spec.rb'
   end
 
   desc 'Run specs in spec/dictionary_definitions_api'
-  RSpec::Core::RakeTask.new(:json) do |task|
+  RSpec::Core::RakeTask.new(:api) do |task|
     task.pattern = 'spec/dictionary_definitions_api/**/*_spec.rb'
   end
 end
