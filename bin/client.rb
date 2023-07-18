@@ -1,5 +1,5 @@
-require_relative 'find_term_html'
-require_relative 'find_term_json'
+require_relative 'dictionary_definitions_api'
+require_relative 'dictionary_definitions_parse'
 require_relative '../support/require_support'
 
 class Client
