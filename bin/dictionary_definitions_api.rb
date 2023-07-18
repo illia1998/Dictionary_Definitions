@@ -34,5 +34,3 @@ class DictionaryDefinitionsApi < DictionaryDefinitions
     definitions
   end
 end
-
-# DictionaryDefinitionsApi.new(:synonym).definition_for('light')
