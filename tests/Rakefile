@@ -1,15 +1,28 @@
-desc 'Running find_term_html cucumber'
-task :run_html_features do
-  sh 'cucumber features/find_term_html/'
-end
-
-desc 'Running find_term_html cucumber'
-task :run_json_features do
-  sh 'cucumber features/find_term_json/'
-end
-
 require 'parallel_tests/tasks'
 require 'rspec/core/rake_task'
+require 'cucumber/rake/task'
+
+namespace :cucumber do
+  desc 'Run dictionary_definitions_parse features'
+  Cucumber::Rake::Task.new(:all_features) do |task|
+    task.cucumber_opts = 'features/'
+  end
+
+  desc 'Run all features in 4 parallel processes'
+  task :parallel do
+    sh 'parallel_cucumber -n 4'
+  end
+
+  desc 'Run dictionary_definitions_parse features'
+  Cucumber::Rake::Task.new(:parse_features) do |task|
+    task.cucumber_opts = 'features/dictionary_definitions_parse'
+  end
+
+  desc 'Run dictionary_definitions_api features'
+  Cucumber::Rake::Task.new(:api_features) do |task|
+    task.cucumber_opts = 'features/dictionary_definitions_api'
+  end
+end
 
 namespace :spec do
   desc 'Run all specs'
@@ -22,14 +35,14 @@ namespace :spec do
     sh 'parallel_rspec -n 4'
   end
 
-  desc 'Run specs in spec/find_term_html'
-  RSpec::Core::RakeTask.new(:html) do |task|
-    task.pattern = 'spec/find_term_html/**/*_spec.rb'
+  desc 'Run specs in spec/dictionary_definitions_parse'
+  RSpec::Core::RakeTask.new(:parse) do |task|
+    task.pattern = 'spec/dictionary_definitions_parse/**/*_spec.rb'
   end
 
-  desc 'Run specs in spec/find_term_json'
-  RSpec::Core::RakeTask.new(:json) do |task|
-    task.pattern = 'spec/find_term_json/**/*_spec.rb'
+  desc 'Run specs in spec/dictionary_definitions_api'
+  RSpec::Core::RakeTask.new(:api) do |task|
+    task.pattern = 'spec/dictionary_definitions_api/**/*_spec.rb'
   end
 end
 

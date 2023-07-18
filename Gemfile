@@ -11,7 +11,6 @@ gem 'rake'
 
 group :test do
   gem 'allure-cucumber'
-  gem 'aruba'
   gem 'cucumber'
   gem 'parallel_tests'
   gem 'rspec-mocks'

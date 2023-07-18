@@ -1,4 +1,4 @@
-require_relative 'support/require_support'
+require_relative '../support/require_support'
 
 # base clazz to look up definitions for words
 class DictionaryDefinitions

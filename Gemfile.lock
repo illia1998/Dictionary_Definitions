@@ -15,18 +15,9 @@ GEM
       require_all (>= 2, < 4)
       rspec-expectations (~> 3.12)
       uuid (>= 2.3, < 3)
-    aruba (2.1.0)
-      bundler (>= 1.17, < 3.0)
-      childprocess (>= 2.0, < 5.0)
-      contracts (>= 0.16.0, < 0.18.0)
-      cucumber (>= 4.0, < 9.0)
-      rspec-expectations (~> 3.4)
-      thor (~> 1.0)
     builder (3.2.4)
-    childprocess (4.1.0)
     colorize (0.8.1)
     concurrent-ruby (1.2.2)
-    contracts (0.17)
     cucumber (8.0.0)
       builder (~> 3.2, >= 3.2.4)
       cucumber-ci-environment (~> 9.0, >= 9.0.4)
@@ -94,7 +85,6 @@ GEM
     sys-uname (1.2.2)
       ffi (~> 1.1)
     systemu (2.6.5)
-    thor (1.2.1)
     tzinfo (2.0.6)
       concurrent-ruby (~> 1.0)
     uuid (2.3.9)
@@ -106,7 +96,6 @@ PLATFORMS
 DEPENDENCIES
   activesupport
   allure-cucumber
-  aruba
   colorize
   cucumber
   faraday
