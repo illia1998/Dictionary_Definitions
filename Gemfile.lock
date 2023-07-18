@@ -15,18 +15,9 @@ GEM
       require_all (>= 2, < 4)
       rspec-expectations (~> 3.12)
       uuid (>= 2.3, < 3)
-    aruba (2.1.0)
-      bundler (>= 1.17, < 3.0)
-      childprocess (>= 2.0, < 5.0)
-      contracts (>= 0.16.0, < 0.18.0)
-      cucumber (>= 4.0, < 9.0)
-      rspec-expectations (~> 3.4)
-      thor (~> 1.0)
     builder (3.2.4)
-    childprocess (4.1.0)
     colorize (0.8.1)
     concurrent-ruby (1.2.2)
-    contracts (0.17)
     cucumber (8.0.0)
       builder (~> 3.2, >= 3.2.4)
       cucumber-ci-environment (~> 9.0, >= 9.0.4)
@@ -57,6 +48,9 @@ GEM
       ruby2_keywords (>= 0.0.4)
     faraday-net_http (3.0.2)
     ffi (1.15.5)
+    fuubar (2.5.1)
+      rspec-core (~> 3.0)
+      ruby-progressbar (~> 1.4)
     i18n (1.12.0)
       concurrent-ruby (~> 1.0)
     json (2.6.3)
@@ -71,18 +65,26 @@ GEM
     nokogiri (1.14.1-x86_64-darwin)
       racc (~> 1.4)
     oj (3.14.2)
+    parallel (1.23.0)
+    parallel_tests (4.2.1)
+      parallel
     racc (1.6.2)
     rake (13.0.6)
     require_all (3.0.0)
+    rspec-core (3.12.2)
+      rspec-support (~> 3.12.0)
     rspec-expectations (3.12.2)
       diff-lcs (>= 1.2.0, < 2.0)
       rspec-support (~> 3.12.0)
+    rspec-mocks (3.12.5)
+      diff-lcs (>= 1.2.0, < 2.0)
+      rspec-support (~> 3.12.0)
     rspec-support (3.12.0)
+    ruby-progressbar (1.13.0)
     ruby2_keywords (0.0.5)
     sys-uname (1.2.2)
       ffi (~> 1.1)
     systemu (2.6.5)
-    thor (1.2.1)
     tzinfo (2.0.6)
       concurrent-ruby (~> 1.0)
     uuid (2.3.9)
@@ -94,14 +96,16 @@ PLATFORMS
 DEPENDENCIES
   activesupport
   allure-cucumber
-  aruba
   colorize
   cucumber
   faraday
+  fuubar
   json
   logger
   nokogiri
+  parallel_tests
   rake
+  rspec-mocks
 
 BUNDLED WITH
    2.3.26

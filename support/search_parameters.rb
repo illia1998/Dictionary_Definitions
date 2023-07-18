@@ -1,22 +1,25 @@
 # this module contains search parameter methods for JSON
 module SearchParameters
   def audio
-    arr ||= []
-    @parsed_response[0]['phonetics'].each { |audio| arr << audio['audio'] }
-    arr.reject(&:empty?).each.with_index(1) do |audio, i|
-      puts "#{i}) #{audio}"
-    end
+    audios = @parsed_response[0]['phonetics'].map { |audio| audio['audio'] }
+    display_items(audios.reject(&:empty?))
   end
 
   def noun
-    @parsed_response[0]['meanings'][0]['definitions'].each.with_index(1) do |noun, i|
-      puts "#{i}) #{noun['definition']}"
-    end
+    nouns = @parsed_response[0]['meanings'][0]['definitions'].map { |noun| noun['definition'] }
+    display_items(nouns)
   end
 
   def synonym
-    @parsed_response[0]['meanings'][0]['synonyms'].each.with_index(1) do |synonym, i|
-      puts "#{i}) #{synonym}"
+    synonyms = @parsed_response[0]['meanings'][0]['synonyms']
+    display_items(synonyms)
+  end
+
+  private
+
+  def display_items(items)
+    items.each.with_index(1) do |item, i|
+      puts "#{i}) #{item}"
     end
   end
 end

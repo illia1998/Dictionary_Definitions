@@ -1,4 +1,4 @@
-require_relative 'support/require_support'
+require_relative '../support/require_support'
 
 # base clazz to look up definitions for words
 class DictionaryDefinitions
@@ -23,6 +23,7 @@ class DictionaryDefinitions
 
   def generate_results
     raise(InvalidParameterError, opts) unless parameter_exist?
+    raise(InvalidURLError, term) unless valid_url?
 
     fetch_data && search_definitions
   end
@@ -31,5 +32,11 @@ class DictionaryDefinitions
 
   def fetch_data
     raise NotImplementedError, "You must implement '#{__method__}' method!"
+  end
+
+  def valid_url?
+    invalid_symbols = /[#%!<>{}"\s]/
+
+    @term.nil? || @term !~ invalid_symbols
   end
 end

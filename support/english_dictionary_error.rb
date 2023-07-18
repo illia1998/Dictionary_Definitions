@@ -17,3 +17,9 @@ class InvalidParameterError < EnglishDictionaryError
     super("Wrong parameter: #{parameter}")
   end
 end
+
+class InvalidURLError < EnglishDictionaryError
+  def initialize(parameter)
+    super("Bad URL input: #{parameter}")
+  end
+end
