@@ -5,13 +5,15 @@ Table of contents
 =================
 
 * [Overview](#Overview)
-* [Project set-up](#Project set-up)
-* [Program execution](#Program execution)
+* [Project set-up](#Project-set-up)
+* [Program execution](#Program-execution)
 * [Tests execution](#Tests-execution)
-    * [RSpec](#Rspec)
+    * [RSpec](#RSpec)
     * [Cucumber](#Cucumber)
 * [Reporting](#Reporting)
-* [The most important note](#The most important note)
+* [The Most Important Note](#The-Most-Important-Note)
+
+<a id="Overview"></a>
 
 # Overview
 
@@ -21,7 +23,9 @@ Welcome to my pet-project created for those who truly appreciate the magic of wo
 and their meanings. Brace yourself for an adventure filled with linguistic wonders, all wrapped in delightfully average
 quality code.
 
-# Project-set-up
+<a id="Project-set-up"></a>
+
+# Project set-up
 
 In order to make it do things, please follow the next steps:
 
@@ -39,6 +43,8 @@ bundle install
 ```shell
 brew install allure
 ```
+
+<a id="Program-execution"></a>
 
 # Program execution
 
@@ -95,6 +101,8 @@ DictionaryDefinitionsApi.new(:word_type).random_definition
 bin/client.rb
 ```
 
+<a id="Tests-execution"></a>
+
 # Tests execution
 
 Navigate to the 'tests' folder:
@@ -102,6 +110,8 @@ Navigate to the 'tests' folder:
 ```shell
 cd tests
 ```
+
+<a id="RSpec"></a>
 
 ### RSpec
 
@@ -117,6 +127,8 @@ In order to run all specs in 4 parallel threads:
 rake spec:parallel
 ```
 
+<a id="Cucumber"></a>
+
 ### Cucumber
 
 In order to run all Cucumber features:
@@ -131,6 +143,8 @@ In order to run all Cucumber features in 4 parallel threads:
 rake cucumber:parallel
 ```
 
+<a id="Reporting"></a>
+
 # Reporting
 
 After your tests executed, all necessary for reporting directories will be created.
@@ -140,6 +154,8 @@ To open generated allure report you need to run:
 allure open
 ```
 
-# The most important note
+<a id="The-Most-Important-Note"></a>
+
+# The Most Important Note
 
 ![If you're not having fun, then you're doing it wrong](https://blowmage.com/images/rubyfunwrong.png)
